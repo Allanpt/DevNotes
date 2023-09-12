@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <!--Icones-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Notes</title>
+</head>
+<body>
+    <header>
+        <h1>DevNotes</h1>
+        <div id="search-div">
+            <iconify-icon id="search-icon" icon="flat-color-icons:search"></iconify-icon>
+            <input id="search-input" type="text" name="search-input" placeholder="Busque por uma nota...">
+        </div>
+        <button id="export-btn">Exportar CSV<span><iconify-icon icon="line-md:download-outline-loop"></iconify-icon></span></button>
+    </header>
+    <main>
+        <section>
+            <div id="put-note-div">
+                <input id="note-to-put" type="text" name="note-to-put" placeholder="O que deseja anotar?">
+                <button id="put-note-btn"><iconify-icon icon="line-md:plus"></iconify-icon></button>
+            </div>
+        </section>
+        <section id="notes-section">
+            <div class="note">
+                <div class="header-note">
+                    <p>Estudar React</p>
+                    <div class="hide-icons">
+                        <button><iconify-icon icon="line-md:close"></iconify-icon></button>
+                        <button><iconify-icon icon="line-md:text-box-to-text-box-multiple-transition"></iconify-icon></button>
+                    </div>
+                </div>
+                <button class="pin"><iconify-icon icon="lucide:pin"></iconify-icon></button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+body{
+    background-color: #9ECBF7;
+    color: #172E4F;
+}
+header{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #172E4F;
+    padding: 15px;
+}
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 8px;
+    cursor: pointer;
+    transition: 0.5s;
+    border-radius: 0.5rem;
+}
+input{
+    width: 400px;
+    padding: 10px;
+    border-radius: 0.25rem;
+    border: none;
+}
+#search-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+#search-icon{
+    font-size: 25px;
+}
+#export-btn{
+    gap: 5px;
+    color: #172E4F;
+    background-color: #9ECBF7;
+    border: 2px solid #172E4F;
+}
+#export-btn:hover{
+    color: #9ECBF7;
+    background-color: #172E4F;
+    border: 2px solid #9ECBF7;
+}
+#export-btn span{
+    padding-top: 6px;
+}
+main{
+    padding-top: 15px;
+}
+#put-note-div{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
+#note-to-put{
+    width: 350px;
+    background-color: #A3D1FF;
+    border: #172E4F 1px solid;
+    box-shadow: 4px 4px 5px #172E4F;
+}
+#put-note-btn{
+    background-color: #A3D1FF;
+    color: #172E4F;
+    border-radius: 0.25rem;
+    border: 1px solid #172E4F;
+    box-shadow: 4px 4px 5px #172E4F;
+}
+#notes-section{
+    padding-top: 35px;
+    padding-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.note{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid black;
+    width: 250px;
+    min-height: 200px;
+    border-radius: 0.5rem;
+    padding: 15px 0 10px 10px;
+}
+.header-note{
+    display: flex;
+    justify-content: space-between;
+}
+.pin{
+    align-self: flex-start;
+}
