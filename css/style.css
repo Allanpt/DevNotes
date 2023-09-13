@@ -66,6 +66,9 @@ main{
     border: #172E4F 1px solid;
     box-shadow: 4px 4px 5px #172E4F;
 }
+#note-to-put::placeholder{
+    color: #172E4F;
+}
 #put-note-btn{
     background-color: #A3D1FF;
     color: #172E4F;
@@ -94,6 +97,40 @@ main{
     display: flex;
     justify-content: space-between;
 }
-.pin{
+.note button.pin{
     align-self: flex-start;
+    background-color: #A3D1FF;
+    border: 1px solid #172E4F;
+}
+.note button{
+    background-color: #9ECBF7;
+    border: none;
+}
+.close-btn{
+    margin-bottom: 10px;
+}
+.hide-icons button{
+    opacity: 0;
+    transition: 0.3s;
+    color: #6497df;
+    background: none;
+}
+.hide-icons button:hover{
+    color: #172E4F;
+}
+.note:hover .hide-icons button {
+    opacity: 1;
+}
+.note.fixed{
+    background-color: #6497df;
+}
+.note.fixed .hide-icons button{
+    color: #172E4F;
+}
+.note.fixed .hide-icons button:hover{
+    color: #A3D1FF;
+}
+
+iconify-icon{
+    pointer-events: none;
 }
