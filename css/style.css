@@ -7,12 +7,29 @@
 body{
     background-color: #9ECBF7;
     color: #172E4F;
+    /* background-color: #172E4F;
+    color: #9ECBF7; */
+
+}
+body.dark-mode{
+    background-color: #172E4F;
+    color: #9ECBF7;
+
+}
+body.dark-mode header{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #9ECBF7;
+    padding: 15px;
+    align-items: center;
 }
 header{
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid #172E4F;
     padding: 15px;
+    align-items: center;
+
 }
 button{
     display: flex;
@@ -29,6 +46,16 @@ input{
     border-radius: 0.25rem;
     border: none;
 }
+body.dark-mode #mode iconify-icon{
+    border: #A3D1FF 1px solid;
+    font-size: 35px;
+    box-shadow: 4px 4px 5px #A3D1FF;
+}
+#mode iconify-icon{
+    border: #172E4F 1px solid;
+    font-size: 35px;
+    box-shadow: 4px 4px 5px #172E4F;
+}
 #search-div{
     display: flex;
     align-items: center;
@@ -37,6 +64,17 @@ input{
 }
 #search-icon{
     font-size: 25px;
+}
+body.dark-mode #export-btn{
+    gap: 5px;
+    color: #9ECBF7;
+    background-color: #172E4F;
+    border: 2px solid #9ECBF7;
+}
+body.dark-mode #export-btn:hover{
+    color: #172E4F;
+    background-color: #9ECBF7;
+    border: 2px solid #172E4F;
 }
 #export-btn{
     gap: 5px;
@@ -60,7 +98,7 @@ main{
     display: flex;
     gap: 10px;
 }
-#note-to-put{
+ #note-to-put{
     width: 350px;
     background-color: #A3D1FF;
     border: #172E4F 1px solid;
@@ -69,12 +107,29 @@ main{
 #note-to-put::placeholder{
     color: #172E4F;
 }
+body.dark-mode #note-to-put{
+    width: 350px;
+    background-color: #172E4F;
+    border: #A3D1FF 1px solid;
+    box-shadow: 4px 4px 5px #A3D1FF;
+    color: #A3D1FF;
+}
+body.dark-mode #note-to-put::placeholder{
+    color: #9ECBF7;
+}
 #put-note-btn{
     background-color: #A3D1FF;
     color: #172E4F;
     border-radius: 0.25rem;
     border: 1px solid #172E4F;
     box-shadow: 4px 4px 5px #172E4F;
+}
+body.dark-mode #put-note-btn{
+    background-color: #172E4F;
+    color: #A3D1FF;
+    border-radius: 0.25rem;
+    border: 1px solid #A3D1FF;
+    box-shadow: 4px 4px 5px #A3D1FF;
 }
 #notes-section{
     padding-top: 35px;
@@ -93,6 +148,16 @@ main{
     border-radius: 0.5rem;
     padding: 15px 0 10px 10px;
 }
+body.dark-mode .note{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgb(255, 255, 255);
+    width: 250px;
+    min-height: 200px;
+    border-radius: 0.5rem;
+    padding: 15px 0 10px 10px;
+}
 .header-note{
     display: flex;
     justify-content: space-between;
@@ -104,6 +169,16 @@ main{
 }
 .note button{
     background-color: #9ECBF7;
+    border: none;
+}
+body.dark-mode .note button.pin{
+    align-self: flex-start;
+    background-color: #172E4F;
+    border: 1px solid #A3D1FF;
+    color: white;
+}
+body.dark-mode .note button{
+    background-color: #172E4F;
     border: none;
 }
 .close-btn{
@@ -118,6 +193,15 @@ main{
 .hide-icons button:hover{
     color: #172E4F;
 }
+body.dark-mode .hide-icons button{
+    opacity: 0;
+    transition: 0.3s;
+    color: #666;
+    background: none;
+}
+body.dark-mode .hide-icons button:hover{
+    color: #A3D1FF;
+}
 .note:hover .hide-icons button {
     opacity: 1;
 }
@@ -129,6 +213,15 @@ main{
 }
 .note.fixed .hide-icons button:hover{
     color: #A3D1FF;
+}
+body.dark-mode .note.fixed{
+    background-color: #111;
+}
+body.dark-mode .note.fixed .hide-icons button{
+    color: #6497df;
+}
+body.dark-mode .note.fixed .hide-icons button:hover{
+    color: #ffffff;
 }
 iconify-icon{
     pointer-events: none;

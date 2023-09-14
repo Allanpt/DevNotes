@@ -4,6 +4,9 @@ const putNoteBtn = document.querySelector('#put-note-btn')
 const notesSection = document.querySelector('#notes-section')
 const searchInput = document.querySelector('#search-input')
 const exportBtn = document.querySelector('#export-btn')
+const bodySwitch = document.querySelector('body')
+const modeSpanSwitch = document.querySelector('#mode')
+
 //Funções
 function insertNote(content, fixed = false, save = 1, id){
    
@@ -94,6 +97,9 @@ function getSearchNotes(value){
 }
 
 //Eventos
+modeSpanSwitch.addEventListener('click', () =>{
+    bodySwitch.classList.toggle('dark-mode')
+})
 putNoteBtn.addEventListener("click", (e) => {
     e.preventDefault()
 
