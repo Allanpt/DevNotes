@@ -130,7 +130,37 @@ main{
 .note.fixed .hide-icons button:hover{
     color: #A3D1FF;
 }
-
 iconify-icon{
     pointer-events: none;
+}
+
+/*Media*/
+
+@media(max-width: 574px){
+    .note{
+        width: 100%;
+    }
+}
+@media(max-width: 750px){
+    header{
+        flex-direction: column;
+        gap: 30px;
+        justify-content: space-around;
+        border-bottom: 1px solid #172E4F;
+        padding: 15px;
+    }
+    header h1{
+        align-self: center;
+    }
+    header #export-btn{
+        align-self: center;
+        max-width: 150px;
+    }
+    #notes-section{
+        justify-content: center;
+        padding-right: 15px;
+    }
+    #put-note-div{
+        padding: 0 15px;
+    }
 }

@@ -2,13 +2,20 @@
 const noteToPutInput = document.querySelector('#note-to-put')
 const putNoteBtn = document.querySelector('#put-note-btn')
 const notesSection = document.querySelector('#notes-section')
-
+const searchInput = document.querySelector('#search-input')
+const exportBtn = document.querySelector('#export-btn')
 //Funções
-function insertNote(content, fixed = false, save = 1){
+function insertNote(content, fixed = false, save = 1, id){
    
+   let noteId = id
+   if(save){
+        noteId = generateNewIDIfExist(id)
+   } 
    
+
    const divNote = document.createElement('div')
    divNote.classList.add('note')
+   divNote.classList.add(noteId)
 
    const divHeaderNote = document.createElement('div')
    divHeaderNote.classList.add('header-note')
@@ -36,7 +43,7 @@ function insertNote(content, fixed = false, save = 1){
         divNote.classList.add('fixed')
     }
     if(save){
-        saveNotesLocalStorage({content, fixed})
+        saveNotesLocalStorage({content,fixed,noteId})
     }
     
    notesSection.appendChild(divNote)
@@ -51,23 +58,49 @@ function insertNote(content, fixed = false, save = 1){
 function clean(){
     noteToPutInput.value = ''
 }
-// function copy(divNote){
+function generateId(){
+    return Math.floor(Math.random() * 5000)
+}
 
-// }
+function copy(divNote){
+    const contentDivNote = divNote.querySelector('.header-note p').innerHTML
+
+    let fixedDivNote = false
+    if(divNote.classList.contains('fixed')){
+        fixedDivNote = true
+    }
+    insertNote(contentDivNote, fixedDivNote, id = generateId())
+}
 function fixing(fixDiv){
     fixDiv.classList.toggle('fixed')
 }
 function cleanNotes(){
     notesSection.replaceChildren([])
 }
+function getSearchNotes(value){
+
+    const notes = document.querySelectorAll('.note')
+    notes.forEach((note) =>{
+
+        let noteTitle = note.querySelector('.header-note p').innerHTML.toLowerCase()
+
+        note.style.display = 'flex'
+
+        if(!noteTitle.includes(value.toLowerCase())){
+            note.style.display = 'none'
+        }
+
+    })
+}
+
 //Eventos
 putNoteBtn.addEventListener("click", (e) => {
     e.preventDefault()
 
     const noteToPutInputValue = noteToPutInput.value;
     if(!noteToPutInputValue) return;
-
-    insertNote(noteToPutInputValue)
+    
+    insertNote(noteToPutInputValue,undefined, undefined,id = generateId())
     clean()
 })
 
@@ -77,28 +110,32 @@ noteToPutInput.addEventListener('keyup', (e) => {
         const noteToPutInputValue = noteToPutInput.value;
         if(!noteToPutInputValue) return;
 
-        insertNote(noteToPutInputValue)
+        insertNote(noteToPutInputValue,undefined,undefined, id = generateId())
         clean()
     }
 })
+searchInput.addEventListener("keyup", (e) =>{
+    const fieldSearchValue = e.target.value
+    getSearchNotes(fieldSearchValue)
+})
+
 document.addEventListener("click", (e) => {
     const targetElement = e.target
     const parentElement = targetElement.closest('.note')
-
-    console.log(targetElement)
-    console.log(parentElement)
-
+    
     if(targetElement.classList.contains('close-btn')){
         parentElement.remove()
         removeNoteLocalStorage(parentElement.querySelector('.header-note p').innerHTML)
     }
-    // if(targetElement.classList.contains('copy-btn')){
-    //     copy(parentElement)
-        
-    // }
+    if(targetElement.classList.contains('copy-btn')){
+        copy(parentElement)
+        cleanNotes()
+        loadNotes()
+    }
     if(targetElement.classList.contains('pin')){
         fixing(parentElement)
-        putFixedNoteLocalStorage(parentElement.querySelector('.header-note p').innerHTML)
+        console.log(parentElement.classList[1])
+        putFixedNoteLocalStorage(parentElement.classList[1])
         cleanNotes()
         loadNotes()
     }
@@ -125,7 +162,8 @@ function loadNotes() {
     const notes = getNotesLocalStorage()
 
     notes.forEach((note) => {
-        insertNote(note.content, note.fixed, 0)
+
+        insertNote(note.content, note.fixed, 0, note.noteId)
     })
 }
 const removeNoteLocalStorage = (noteText) => {
@@ -135,13 +173,50 @@ const removeNoteLocalStorage = (noteText) => {
 
     localStorage.setItem('Notes', JSON.stringify(filteredNotes))
 }
-const putFixedNoteLocalStorage = (noteText) => {
-    
+const putFixedNoteLocalStorage = (noteid) => {
+    const notes = getNotesLocalStorage();
+
+    notes.forEach((note) => {
+        if (note.noteId == noteid) {
+            note.fixed = !note.fixed;
+        }
+    });
+
+    localStorage.setItem('Notes', JSON.stringify(notes));
+}
+function generateNewIDIfExist(id){
     const notes = getNotesLocalStorage()
 
-    notes.map((note) => note.content === noteText ? note.fixed = !note.fixed : null)
-
-    localStorage.setItem('Notes', JSON.stringify(notes))
+    let filteredIds = notes.filter((note) => note.id === id)[0]
+    while(filteredIds !== undefined){
+        id = generateId()
+        filteredIds = notes.filter((note) => note.id === id)[0]
+        
+    }
+    return id
 }
-
+//inicialização
 loadNotes()
+
+//Download
+function exportData(){
+    const notes = getNotesLocalStorage()
+
+    const csvString = [
+        ['ID', 'Conteudo', 'Fixado?'],...notes.map((note) => [note.noteId, note.content, note.fixed])]
+        .map((e) => e.join(','))
+        .join('\n')
+    
+    const element = document.createElement('a')
+
+    element.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString)
+
+    element.target = '_blank'
+
+    element.download = 'notes.csv'
+
+    element.click()
+}
+exportBtn.addEventListener('click', () =>{
+    exportData()
+})
