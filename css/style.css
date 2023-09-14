@@ -229,6 +229,11 @@ iconify-icon{
 
 /*Media*/
 
+@media(max-width: 460px){
+    #search-input{
+        width: 300px;
+    }
+}
 @media(max-width: 574px){
     .note{
         width: 100%;
